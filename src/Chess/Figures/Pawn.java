@@ -1,7 +1,7 @@
 package Chess.Figures;
 
-import Chess.ChessFigure;
 import Chess.Base.Coordinate;
+import Chess.ChessFigure;
 
 public class Pawn extends ChessFigure {
 
@@ -18,18 +18,25 @@ public class Pawn extends ChessFigure {
         //TODO: how does Pawn can move on chess board?
         if (colorIsWhite) {
             if (isFirstStep) {
-                return coordinateFrom.getX() == coordinateTo.getX()
+                if (coordinateFrom.getX() == coordinateTo.getX()
                         && (coordinateTo.getY() - coordinateFrom.getY() == 2
-                        || coordinateTo.getY() - coordinateFrom.getY() == 1);
+                        || coordinateTo.getY() - coordinateFrom.getY() == 1)) {
+                    isFirstStep = false;
+                    return true;
+                } else return false;
+
             } else {
                 return coordinateFrom.getX() == coordinateTo.getX()
                         && coordinateTo.getY() - coordinateFrom.getY() == 1;
             }
         } else {
             if (isFirstStep) {
-                return coordinateFrom.getX() == coordinateTo.getX()
+                if (coordinateFrom.getX() == coordinateTo.getX()
                         && (coordinateFrom.getY() - coordinateTo.getY() == 2
-                        || coordinateFrom.getY() - coordinateTo.getY() == 1);
+                        || coordinateFrom.getY() - coordinateTo.getY() == 1)) {
+                    isFirstStep = false;
+                    return true;
+                } else return false;
             } else {
                 return coordinateFrom.getX() == coordinateTo.getX()
                         && coordinateFrom.getY() - coordinateTo.getY() == 1;
