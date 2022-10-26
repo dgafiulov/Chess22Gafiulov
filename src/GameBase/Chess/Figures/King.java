@@ -1,7 +1,7 @@
-package Chess.Figures;
+package GameBase.Chess.Figures;
 
-import Chess.ChessFigure;
-import Chess.Base.Coordinate;
+import GameBase.Chess.ChessFigure;
+import GameBase.Base.Coordinate;
 
 public class King extends ChessFigure {
     public King(boolean colorIsWhite, Coordinate coordinateFrom) {
@@ -10,7 +10,7 @@ public class King extends ChessFigure {
 
     @Override
     public boolean canMove(Coordinate coordinateTo) {
-        //TODO: how does King can move on chess boardR?
+        //TODO: how does King can move on chess board?
         return false;
     }
 }

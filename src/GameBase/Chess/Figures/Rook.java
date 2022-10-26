@@ -1,7 +1,7 @@
-package Chess.Figures;
+package GameBase.Chess.Figures;
 
-import Chess.ChessFigure;
-import Chess.Base.Coordinate;
+import GameBase.Chess.ChessFigure;
+import GameBase.Base.Coordinate;
 
 public class Rook extends ChessFigure {
     public Rook(boolean colorIsWhite, Coordinate coordinateFrom) {

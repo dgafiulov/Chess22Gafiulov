@@ -1,4 +1,4 @@
-package Chess.Base;
+package GameBase.Base;
 
 public class Coordinate {
     private int x, y;
@@ -8,7 +8,7 @@ public class Coordinate {
         this.y = y;
     }
 
-    public void update(int new_x, int new_y) {
+    private void update(int new_x, int new_y) {
         this.x = new_x;
         this.y = new_y;
     }
