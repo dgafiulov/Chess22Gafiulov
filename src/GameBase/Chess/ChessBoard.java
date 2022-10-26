@@ -63,7 +63,7 @@ public class ChessBoard extends Board {
         final StringBuilder sb = new StringBuilder();
         sb.append(" |A|B|C|D|E|F|G|H\n").append("-----------------\n");
         for (int i = 0; i < chessFieldSize; i++) {
-            sb.append(i + 1);
+            sb.append(8 - i);
             for (int j = 0; j < chessFieldSize; j++)
                 sb.append("|").append(
                         field[chessFieldSize - 1 - i][j] != null ? field[chessFieldSize - 1 - i][j] : " "
@@ -79,6 +79,8 @@ public class ChessBoard extends Board {
         else {
             ChessFigure tempFrom = (ChessFigure) field[from.getY()][from.getX()];
             ChessFigure tempTo = (ChessFigure) field[to.getY()][to.getX()];
+            System.out.println("from = " + from);
+            System.out.println("Ffrom = " + tempFrom);
             switch (tempFrom.getClass().getSimpleName()) {
                 case "Bishop":
                 case "King":
