@@ -51,10 +51,6 @@ public class ChessBoard extends Board {
         for (int i = 0; i < chessFieldSize; i++)
             field[6][i] = new Pawn(false, new Coordinate(i, 6));
     }
-//    optional
-//    public void loadGame() {
-//        this.resetField();
-//    }
 
     @Override
     public String toString() {
@@ -79,13 +75,11 @@ public class ChessBoard extends Board {
             Figure tempTo = field[to.getY()][to.getX()];
             switch (tempFrom.getClass().getSimpleName()) {
                 case "Bishop":
-                    if (tempFrom.canMove(to)) {
-                    }
-                    break;
+                    if (tempFrom.canMove(to))
+                        return true;
                 case "King":
-                    if (tempFrom.canMove(to)) {
-                    }
-                    break;
+                    if (tempFrom.canMove(to))
+                        return false;
                 case "Knight":
                     if (tempFrom.canMove(to)) {
                         if (tempTo == null)
@@ -93,7 +87,6 @@ public class ChessBoard extends Board {
                         else
                             return tempFrom.isColorIsWhite() != tempTo.isColorIsWhite();
                     }
-                    break;
                 case "Pawn":
                     if (tempFrom.canMove(to)) {
                         if (tempTo == null)
@@ -102,28 +95,19 @@ public class ChessBoard extends Board {
                             return tempFrom.isColorIsWhite() != tempTo.isColorIsWhite() && from.getX() != to.getX();
                     }
                     return false;
-
                 case "Queen":
-                    if (tempFrom.canMove(to)) {
-                    }
-                    break;
+                    if (tempFrom.canMove(to))
+                        return true;
                 case "Rook":
-                    if (tempFrom.canMove(to)) {
-                    }
-                    break;
+                    if (tempFrom.canMove(to))
+                        return false;
             }
-
-
-            return (
-                    field[to.getY()][to.getX()] == null ||
-                            field[from.getY()][from.getX()].isColorIsWhite() !=
-                                    field[to.getY()][to.getX()].isColorIsWhite()
-            );
+            return false;
         }
     }
 
     public void move(Coordinate from, Coordinate to) {
-        field[from.getY()][from.getX()].move(to);
+        field[from.getY()][from.getX()].moveTo(to);
         field[to.getY()][to.getX()] = field[from.getY()][from.getX()];
         field[from.getY()][from.getX()] = null;
     }

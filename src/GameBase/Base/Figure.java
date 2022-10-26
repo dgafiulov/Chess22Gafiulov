@@ -14,7 +14,7 @@ public abstract class Figure implements Movable {
         this.from = from;
     }
 
-    public void move(Coordinate to) {
+    public void moveTo(Coordinate to) {
         this.from = to;
     }
 

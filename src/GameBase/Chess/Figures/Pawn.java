@@ -12,35 +12,22 @@ public class Pawn extends ChessFigure {
         this.isFirstStep = true;
     }
 
-
     @Override
-    public boolean canMove(Coordinate coordinateTo) {
+    public boolean canMove(Coordinate to) {
         //TODO: how does Pawn can move on chess board?
-        if (colorIsWhite) {
-            if (isFirstStep) {
-                if (from.getX() == coordinateTo.getX()
-                        && (coordinateTo.getY() - from.getY() == 2
-                        || coordinateTo.getY() - from.getY() == 1)) {
-                    isFirstStep = false;
-                    return true;
-                } else return false;
-
-            } else {
-                return from.getX() == coordinateTo.getX()
-                        && coordinateTo.getY() - from.getY() == 1;
-            }
+        boolean isStepByOne = from.getX() == to.getX() &&
+                (colorIsWhite ? to.getY() - from.getY() == 1 : from.getY() - to.getY() == 1);
+        boolean isStepByTwo = from.getX() == to.getX() &&
+                (colorIsWhite ? to.getY() - from.getY() == 2 : from.getY() - to.getY() == 2);
+        boolean isAttack = Math.abs(from.getX() - to.getX()) == 1 &&
+                (colorIsWhite ? to.getY() - from.getY() == 1 : from.getY() - to.getY() == 1);
+        if (isFirstStep) {
+            if (isStepByOne || isStepByTwo || isAttack) {
+                isFirstStep = false;
+                return true;
+            } else return false;
         } else {
-            if (isFirstStep) {
-                if (from.getX() == coordinateTo.getX()
-                        && (from.getY() - coordinateTo.getY() == 2
-                        || from.getY() - coordinateTo.getY() == 1)) {
-                    isFirstStep = false;
-                    return true;
-                } else return false;
-            } else {
-                return from.getX() == coordinateTo.getX()
-                        && from.getY() - coordinateTo.getY() == 1;
-            }
+            return isStepByOne || isAttack;
         }
     }
 }
