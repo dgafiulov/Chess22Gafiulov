@@ -2,8 +2,10 @@ package GameBase.Chess;
 
 import GameBase.Base.Board;
 import GameBase.Base.Coordinate;
-import GameBase.Base.Figure;
+import GameBase.Base.Movable;
 import GameBase.Chess.Figures.*;
+
+import java.util.Arrays;
 
 public class ChessBoard extends Board {
     private static final int chessFieldSize;
@@ -16,14 +18,18 @@ public class ChessBoard extends Board {
 
 
     private ChessBoard() {
-        super(chessFieldSize, chessFieldSize);
+        this.field = new ChessFigure[chessFieldSize][chessFieldSize];
+        for (Movable[] cf : field) Arrays.fill(cf, null);
+
     }
 
     public static ChessBoard getInstance() {
-        if (instance == null) {
-            instance = new ChessBoard();
-        }
+        if (instance == null) instance = new ChessBoard();
         return instance;
+    }
+
+    private void resetField() {
+        for (Movable[] cf : field) Arrays.fill(cf, null);
     }
 
     public void newField() {
@@ -54,7 +60,8 @@ public class ChessBoard extends Board {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder(" |A|B|C|D|E|F|G|H\n").append("-----------------\n");
+        final StringBuilder sb = new StringBuilder();
+        sb.append(" |A|B|C|D|E|F|G|H\n").append("-----------------\n");
         for (int i = 0; i < chessFieldSize; i++) {
             sb.append(i + 1);
             for (int j = 0; j < chessFieldSize; j++)
@@ -71,8 +78,8 @@ public class ChessBoard extends Board {
         if (field[from.getY()][from.getX()] == null)
             return false;
         else {
-            Figure tempFrom = field[from.getY()][from.getX()];
-            Figure tempTo = field[to.getY()][to.getX()];
+            ChessFigure tempFrom = (ChessFigure) field[from.getY()][from.getX()];
+            ChessFigure tempTo = (ChessFigure) field[to.getY()][to.getX()];
             switch (tempFrom.getClass().getSimpleName()) {
                 case "Bishop":
                     if (tempFrom.canMove(to))
@@ -107,7 +114,7 @@ public class ChessBoard extends Board {
     }
 
     public void move(Coordinate from, Coordinate to) {
-        field[from.getY()][from.getX()].moveTo(to);
+        ((ChessFigure) field[from.getY()][from.getX()]).moveTo(to);
         field[to.getY()][to.getX()] = field[from.getY()][from.getX()];
         field[from.getY()][from.getX()] = null;
     }

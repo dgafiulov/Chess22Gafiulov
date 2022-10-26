@@ -8,11 +8,6 @@ public class Coordinate {
         this.y = y;
     }
 
-    private void update(int new_x, int new_y) {
-        this.x = new_x;
-        this.y = new_y;
-    }
-
     @Override
     public String toString() {
         return x + " " + y;
