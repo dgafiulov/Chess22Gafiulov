@@ -75,41 +75,29 @@ public class ChessBoard extends Board {
     }
 
     public boolean canMove(Coordinate from, Coordinate to) {
-        if (field[from.getY()][from.getX()] == null)
-            return false;
+        if (field[from.getY()][from.getX()] == null) return false;
         else {
             ChessFigure tempFrom = (ChessFigure) field[from.getY()][from.getX()];
             ChessFigure tempTo = (ChessFigure) field[to.getY()][to.getX()];
             switch (tempFrom.getClass().getSimpleName()) {
                 case "Bishop":
-                    if (tempFrom.canMove(to))
-                        return true;
                 case "King":
-                    if (tempFrom.canMove(to))
-                        return false;
-                case "Knight":
-                    if (tempFrom.canMove(to)) {
-                        if (tempTo == null)
-                            return true;
-                        else
-                            return tempFrom.isColorIsWhite() != tempTo.isColorIsWhite();
-                    }
-                case "Pawn":
-                    if (tempFrom.canMove(to)) {
-                        if (tempTo == null)
-                            return from.getX() == to.getX();
-                        else
-                            return tempFrom.isColorIsWhite() != tempTo.isColorIsWhite() && from.getX() != to.getX();
-                    }
-                    return false;
                 case "Queen":
-                    if (tempFrom.canMove(to))
-                        return true;
                 case "Rook":
+                    return tempFrom.canMove(to);
+                case "Knight":
                     if (tempFrom.canMove(to))
-                        return false;
+                        if (tempTo == null) return true;
+                        else return tempFrom.isColorIsWhite() != tempTo.isColorIsWhite();
+                    else return false;
+                case "Pawn":
+                    if (tempFrom.canMove(to))
+                        if (tempTo == null) return from.getX() == to.getX();
+                        else return tempFrom.isColorIsWhite() != tempTo.isColorIsWhite() && from.getX() != to.getX();
+                    else return false;
+                default:
+                    return false;
             }
-            return false;
         }
     }
 

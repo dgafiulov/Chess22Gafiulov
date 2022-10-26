@@ -5,7 +5,7 @@ import GameBase.Base.Coordinate;
 import java.util.Scanner;
 
 public class ChessGame {
-    private ChessBoard board;
+    private final ChessBoard board;
     public static ChessGame instance;
 
     private ChessGame() {
@@ -13,9 +13,7 @@ public class ChessGame {
     }
 
     public static ChessGame getInstance() {
-        if (instance == null) {
-            instance = new ChessGame();
-        }
+        if (instance == null) instance = new ChessGame();
         return instance;
     }
 
@@ -39,11 +37,7 @@ public class ChessGame {
                     board.move(from, to);
                 from = to;
                 to = new Coordinate(1, to.getY() + step);
-
             }
-
         }
-
     }
-
 }
