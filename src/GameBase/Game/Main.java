@@ -54,7 +54,7 @@ public class Main {
     }
 
     static private void makeStep() {
-        chessGame.makeStep(coor);
+        chessGame.makeStep(coor, stepCounter);
     }
 
     static private void endGame() {

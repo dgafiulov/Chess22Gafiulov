@@ -2,6 +2,7 @@ package GameBase.Chess.Figures;
 
 import GameBase.Chess.ChessFigure;
 import GameBase.Base.Coordinate;
+import GameBase.Chess.ChessGame;
 
 public class Rook extends ChessFigure {
     public Rook(boolean colorIsWhite, Coordinate coordinateFrom) {
@@ -9,8 +10,9 @@ public class Rook extends ChessFigure {
     }
 
     @Override
-    public boolean canMove(Coordinate coordinateTo) {
-        //TODO: how does Rook can move on chess board?
-        return false;
+    public boolean canMove(Coordinate to) {
+        boolean isStepX = from.getY() == to.getY();
+        boolean isStepY = from.getX() == to.getX();
+        return isStepX ^ isStepY;
     }
 }

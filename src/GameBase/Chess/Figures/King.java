@@ -10,7 +10,10 @@ public class King extends ChessFigure {
 
     @Override
     public boolean canMove(Coordinate coordinateTo) {
-        //TODO: how does King can move on chess board?
-        return false;
+        if (Math.abs(from.getX() - coordinateTo.getX()) <= 1 && Math.abs(from.getY() - coordinateTo.getY()) <= 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

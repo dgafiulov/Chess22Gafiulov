@@ -10,7 +10,9 @@ public class Queen extends ChessFigure {
 
     @Override
     public boolean canMove(Coordinate coordinateTo) {
-        //TODO: how does Queen can move on chess board?
-        return false;
+        boolean isStepX = from.getY() == coordinateTo.getY();
+        boolean isStepY = from.getX() == coordinateTo.getX();
+        boolean isStepDiagonal = Math.abs(coordinateTo.getX() - from.getX()) == Math.abs(coordinateTo.getY() - from.getY());
+        return (isStepX ^ isStepY) || isStepDiagonal;
     }
 }

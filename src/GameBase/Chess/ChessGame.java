@@ -20,8 +20,8 @@ public class ChessGame {
         this.showBoard();
     }
 
-    public void makeStep(Coordinate[] coor) {
-        if (board.canMove(coor[0], coor[1]))
+    public void makeStep(Coordinate[] coor, int stepCounter) {
+        if (board.canMove(coor[0], coor[1], stepCounter))
             board.move(coor[0], coor[1]);
         this.showBoard();
     }
